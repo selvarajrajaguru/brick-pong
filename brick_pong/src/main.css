@@ -6,7 +6,7 @@
 
 body{
 	font-family: arial;
-	background-color: #000000;
+	background-color: #444444;
 	color:#C1C1C1;
 }
 
@@ -37,7 +37,6 @@ div.game-point-table div{
 
 div.game-area{
 	margin:3px;
-	border: solid 1px #6B6B6B;
 }
 
 /****** Game Pop Up Start ********/
