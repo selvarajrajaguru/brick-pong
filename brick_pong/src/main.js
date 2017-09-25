@@ -9,6 +9,9 @@ var noOfRows = 5;
 var bricksWidth = (wWidth / noOfBricksPerRow);
 var bricks;
 var totalBricks = noOfRows * noOfBricksPerRow;
+var totalBrickscount = 0;
+var generateColor = [ "#ff0","#cf0","#0c0","#099","#00c","#309","#609","#909","#c03","#f00","#f60","#f90"];
+var bgcolors;
 
 var gameControl = {
 	point:0,
@@ -103,13 +106,31 @@ var gameControl = {
 };
 
 function Bricks(x,y){
+	scolors();
+	
 	this.x = x;
 	this.y = y;
 	this.width = bricksWidth;
 	this.height = 20;
-	this.bgcolor = "#FFFFFF";
-	this.bcolor = "#000000";
+	this.bgcolor = bgcolors;	
+	this.bcolor = "rgba(0, 0, 0, 1)";
 	this.active = true;
+}
+/* 
+function scolors(){		
+		bgcolors = generateColor[Math.floor(Math.random()*generateColor.length)];	
+}
+ */
+ 
+function scolors(){
+	if(totalBrickscount == 0){		
+		bgcolors = generateColor[Math.floor(Math.random()*generateColor.length)];		
+	}else if(totalBrickscount%10){
+		/* do nothing		 */
+	}else{		
+		bgcolors = generateColor[Math.floor(Math.random()*generateColor.length)];					
+	}
+	totalBrickscount++;
 }
 
 Bricks.prototype.draw = function(){
@@ -202,10 +223,10 @@ function PongBar(){
 
 	this.x = 400;
 	this.y = (wHeight - 10);
-	this.width = 130;
+	this.width = 120;
 	this.height = 10;
 	this.color = "#FFFFFF";
-	this.velocity = 25;
+	this.velocity = 60;
 
 }
 
@@ -245,7 +266,7 @@ var bar = new PongBar();
 function loop(){
 
 
-    ctx.fillStyle = 'rgba(0, 0, 0, 0.25)';
+    ctx.fillStyle = 'rgba(0, 0, 0, 1)';
     ctx.fillRect(0, 0, wWidth, wHeight);
 
 	if (bricks.length == 0){
